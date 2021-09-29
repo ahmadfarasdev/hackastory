@@ -1,0 +1,11 @@
+{
+  "name": "dsl-generated dependencies",
+  "dependencies": {
+    "lodash": "latest",
+    "angular": "latest",
+    "nvd3": "latest",
+    "angular-ui-router": "latest",
+    "angular-nvd3": "latest",
+    "ionic": "latest"
+  }
+}

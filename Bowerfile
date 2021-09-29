@@ -1,0 +1,6 @@
+asset 'lodash'
+asset 'angular'
+asset 'nvd3'
+asset 'angular-ui-router'
+asset 'angular-nvd3'
+asset 'ionic'

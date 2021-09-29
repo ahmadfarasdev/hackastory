@@ -1,0 +1,224 @@
+article.story {
+  section.unlock {
+    @include flex-grow(1);
+  }
+
+  .locked-story {
+    @include flex-column(stretch);
+    min-height: 100vh;
+  }
+}
+
+section.aspect {
+
+  .content {
+    padding: $small-space $large-space;
+    @include flex-row;
+
+    h2 {
+      @include flex-shrink(1);
+    }
+    .badge, .unlocker {
+      @include flex-shrink(0);
+    }
+  }
+
+  color: white;
+
+  h2 {
+    font-size: 16px;
+    font-weight: 400;
+    @include flex-grow(1);
+    line-height: 1.2em;
+    margin-right: $large-space;
+  }
+
+  .unlocker {
+    width: 30px; height: 30px;
+    opacity: 0.4;
+
+    img {
+      border-radius: 50%;
+    }
+  }
+
+  &:first-child {
+    display: block; // Undo flex.
+    padding: $large-space;
+
+    .aspect-icon {
+      text-align: center;
+      opacity: 0.5;
+      margin: #{-$small-space} 0 0;
+      img {
+        width: 25px; height: 25px;
+      }
+    }
+
+    header {
+      margin: -$large-space;
+      margin-bottom: $large-space;
+    }
+
+    .aspect-picture {
+      opacity: 0.5;
+      margin: -$large-space;
+      img {
+        display: block;
+      }
+    }
+
+    min-height: 80px;
+    h2 {
+      padding: $large-space 0;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 600;
+      margin-right: 0;
+    }
+  }
+
+  &:not(:first-child) {
+    background-color: #222;
+    @each $aspect, $color in $colors {
+      &.aspect-#{$aspect} {
+        border-left: 5px solid $color;
+      }
+    }
+
+    .aspect-picture {
+      margin: #{-$small-space} #{$small-space} #{-$small-space} #{-$large-space};
+      @include flex-grow(1);
+      img {
+        display: block;
+        width: 90px; height: 50px;
+      }
+    }
+  }
+
+  .content .badge {
+    margin: -34px 0 -26px 0;
+    width: 64px; height: 64px;
+
+    transform: rotate(30deg);
+
+    img { border-radius: 100%; }
+  }
+
+  footer.badges {
+    padding: $small-space $large-space;
+    background: rgba(black, 0.1);
+    @include flex-row;
+    @include justify-content(space-between);
+
+    .badge {
+      @include flex-column;
+    }
+
+    .label {
+      font-size: 12px;
+    }
+  }
+
+}
+
+section.unlock {
+  position: relative;
+  color: white;
+
+  .background {
+    position: absolute;
+    overflow: hidden;
+
+    top: $large-space;
+    bottom: 0;
+    left: $large-space;
+    right: $large-space;
+
+    padding: $large-space;
+    padding-top: 3 * $large-space;
+    color: white;
+    background: #222;
+    pointer-events: none;
+
+    box-shadow: 0 0 2px rgba(black, 0.1);
+
+    @extend .html;
+    font-size: 14px;
+
+    h1, h2, p {
+      @include filter(blur(3px));
+      opacity: 0.4;
+    }
+  }
+
+  .content {
+    position: relative;
+    padding: $large-space + $small-space;
+    text-align: center;
+
+    > .label {
+      display: block;
+      font-size: 12px;
+    }
+    .buttons {
+      padding: $large-space;
+      @include flex-row;
+      @include justify-content(center);
+    }
+    button:not(:last-child) {
+      margin-right: $small-space;
+    }
+  }
+
+}
+
+article.story.unlocked-by-me section.unlock {
+  .content .label {
+    opacity: 0.4;
+  }
+  button.aspect {
+    opacity: 0.4;
+    background-color: #777;
+  }
+}
+
+.unlocked-story {
+  @include flex-column(stretch);
+
+  header {
+    @include flex-row;
+    padding: $small-space $large-space 0 $small-space;
+    button { display: block; }
+
+    .stretch {
+      @include flex-grow(1);
+    }
+
+    .unlockers {
+      @include flex-row;
+      @include flex-direction(row-reverse);
+      .avatar:not(:first-child) {
+        margin-right: -4px;
+      }
+    }
+  }
+
+  color: white;
+  @extend .html;
+
+  .picture {
+    margin: $large-space;
+  }
+
+  h1, .content {
+    margin: 0 $large-space $large-space;
+  }
+
+}
+
+@each $aspect, $color in $colors {
+  .aspect-#{$aspect} {
+    background-color: $color;
+  }
+}

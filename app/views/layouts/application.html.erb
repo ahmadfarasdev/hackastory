@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>News Bricks</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, height=device-height">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <link rel="apple-touch-icon" href="<%= image_path('newsbricks.png') %>">
+
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
+  </script>
+
+  <%= csrf_meta_tags %>
+</head>
+<body ng-app="newsbricks">
+
+  <%= yield %>
+
+  <div id="loading" ng-show="loading">
+    <div class="spinner"></div>
+  </div>
+
+  <div id="notifications">
+    <ul>
+      <li ng-repeat="notification in notifications" ui-sref="story({id: notification.story.id})">
+        <figure class="avatar" title="{{ notification.user.name }}">
+          <img ng-src="{{ notification.user.avatar }}" alt="{{ notification.user.name }}" />
+        </figure>
+        <div class="callout aspect-{{ notification.aspect.aspect }}">
+          <span ng-show="notification.aspect.text">{{ notification.aspect.text }}</span>
+          <figure class="aspect-picture" ng-show="notification.aspect.image_url">
+            <img ng-src="{{ notification.aspect.image_url }}"/>
+          </figure>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+</body>
+</html>

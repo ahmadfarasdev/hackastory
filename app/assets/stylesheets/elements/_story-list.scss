@@ -1,0 +1,38 @@
+.story-list {
+  padding: $large-space;
+
+  .story-item {
+    &:not(:last-child) {
+      margin-bottom: $large-space;
+    }
+    cursor: pointer;
+  }
+
+  .story-item.unlocked {
+    position: relative;
+    background: black;
+
+    padding-top: 9/16 * 100%;
+
+    .picture {
+      @include fill;
+      opacity: 0.5;
+    }
+    h2 {
+      @include fill;
+      padding: $large-space;
+      line-height: 1.2em;
+      text-align: center;
+
+      color: white;
+      font-size: 30px;
+      font-weight: 600;
+    }
+  }
+
+}
+
+footer.logout {
+  @include flex-column;
+  padding: $large-space;
+}

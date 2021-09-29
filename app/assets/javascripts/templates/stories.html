@@ -1,0 +1,22 @@
+<ion-content scroll="true">
+  <ion-refresher on-refresh="reload()">
+  </ion-refresher>
+
+  <ion-list class="story-list">
+
+    <ion-item class="story-item aspect-{{ story.unlocked_aspects[0].aspect }}" ng-repeat="story in stories" ng-class="{'unlocked': story.unlocked}" ui-sref="story({id: story.id})">
+      <div ng-include="templateFor(story)"></div>
+    </ion-item>
+
+  </ion-list>
+
+  <footer class="logout">
+    <button class="logout" ui-sref="login">
+      LOG OUT
+    </button>
+    <br/>
+    <button class="stats" ui-sref="stats">
+      STATS
+    </button>
+  </footer>
+</ion-content>
